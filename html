@@ -1,0 +1,17 @@
+<form action="/signup" method="POST">
+  <h2>DivaAi Sign Up</h2>
+  <input type="text" name="username" placeholder="Username" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <button type="submit">Create Account</button>
+</form>
+from openai import OpenAI
+client = OpenAI(api_key="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")
+
+def ask_ai(question):
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": question}]
+    )
+    return response.choices[0].message.content
+
+print(ask_ai("What is DivaAi?"))
